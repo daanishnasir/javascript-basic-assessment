@@ -60,6 +60,29 @@ var snake = {
 	runs: 'legless'
 };
 
+
+function convert(snake){
+
+for(key in snake){
+  if(key.charAt([0]) === 's'){
+    snake[key] = 's';
+  }
+}
+  return snake;
+}
+// function convert(snake){
+// for(var prop in snake){
+// 	if(prop[0] === "s"){
+// 	  console.log('first letter:', prop[0])
+// 		snake[prop] = "s"
+// 	}
+// }
+//   return snake;
+// }
+
+
+convert(snake);
+
 //#7 Create an array of strings that are the 7 primary colors in the rainbow - red, orange, yellow, green, blue, indigo, violet (lower-case). Call your array rainbowColors
 var rainbowColors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 // #8 Using this array do the following
@@ -71,19 +94,12 @@ var firstHero = heroes.shift();
 // add 'spongebob' to the start of the array
 heroes.unshift('spongebob');
 // remove 'flash' from the array and store him in a variable called secondHero
-for(var i = 0; i < heroes.length; i++) {
-    if(heroes[i] === 'flash') {
-       heroes.splice(i, 1);
-    }
-}
 
-var secondHero = 'flash';
-
-
-
+var secondHero = heroes.splice(2,1)
 
 // leave batman in the array but put a copy of him on a variable called thirdHero
-var thirdHero = heroes[1];
+
+var thirdHero = heroes.slice(1,2).join(' ')
 
 
 
@@ -114,9 +130,16 @@ return arr.filter(function(value,idx,arr){
 
 // #11 Write a function  called doubleTheFun that takes 1 parameter. It should double numbers, and
 // repeats strings. example 4->8, 2.5->5, 'Awesome'->'AwesomeAwesome'
-function doubleTheFun(num){
-  return num + num;
+
+function doubleTheFun(param){
+	if(!Number(param)){
+		return param.repeat(2);
+	}
+	else{
+		return  param * 2;
+	}
 }
+
 
 
 
@@ -155,8 +178,17 @@ function makeChatMessage(message, author){
 
 // #14 Create a function called coderTest that takes in an object that is a person. It looks to see if the person’s name is Jeremy and then changes the person object to have a property called lovesCode with a value of 10.  If their name is Brack set lovesCode to 0.  otherwise set lovesCode to 5.
 
-function coderTest(){
-
+function coderTest(obj){
+	if(obj['name'] === "Jeremy"){
+		obj.lovesCode = 10;
+	}
+	else if(obj['name'] === "Brack"){
+		obj.lovesCode = 0;
+	}
+	else{
+		obj.lovesCode = 5;
+	}
+	return obj;
 }
 
 // #15 Create a function called outside that takes in a temperature (number), a humidity(number), and a cloudiness(number), in that order. Using the following to return the correct values
@@ -190,10 +222,6 @@ function outside(temperature,humidity,cloudiness){
 // #16 Create a function called callerBack that takes in a function (holla) and a string parameter(back) and invokes it(holla) with the argument string(back) + ' back'."
 // example - If I call you with 'Give it' you should invoke holla with 'Give it back'
 
-function callerBack(func,str){
-	function holla(){
-
-	}
+function callerBack(func, str){
+	return func(str + ' back')
 }
-
-callerBack(holla,back);
